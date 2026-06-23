@@ -1,0 +1,30 @@
+name: mon_premier_app
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  http: ^1.6.0
+  provider: ^6.1.1
+  image_picker: ^1.0.4
+  pdf: ^3.10.7
+  printing: ^5.11.1
+  share_plus: ^7.2.2
+  path_provider: ^2.1.2
+  flutter_secure_storage: ^9.0.0
+
+  url_launcher: ^6.2.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
