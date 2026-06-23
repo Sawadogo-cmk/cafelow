@@ -48,3 +48,17 @@ backend/node_modules/
 backend/uploads/
 .DS_Store
 *.log
+echo "# Fichiers Node.js" > .gitignore
+echo "node_modules/" >> .gitignore
+echo ".env" >> .gitignore
+echo "uploads/" >> .gitignore
+echo "" >> .gitignore
+echo "# Fichiers Flutter" >> .gitignore
+echo ".dart_tool/" >> .gitignore
+echo "build/" >> .gitignore
+echo "*.apk" >> .gitignore
+echo "*.aab" >> .gitignore
+echo "*.iml" >> .gitignore
+echo ".idea/" >> .gitignore
+echo ".vscode/" >> .gitignore
+echo "*.log" >> .gitignore
