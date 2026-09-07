@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ☕ CaféFlow - Application Flutter de gestion de café & commandes
 
 ![Flutter](https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter)
@@ -93,3 +94,12 @@ cp .env.example .env
 
 # Démarrer le serveur
 npm start
+=======
+## 🌐 Tester en version Web (sans installation)
+
+👉 [Cliquez ici pour tester CaféFlow dans votre navigateur](https://votre-nom-aleatoire.netlify.app)
+
+### 🔑 Identifiants de test
+- **Email** : `admin@gmail.com`
+- **Mot de passe** : `admin123`
+>>>>>>> 8c5af4e (Revise README with web testing link and credentials)
