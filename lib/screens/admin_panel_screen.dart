@@ -26,7 +26,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
     MenuManagementTab(),
     ClientsTab(),
     ProfileTab(),
-    ShopSettingsTab(), // 👈 Nouvel onglet Boutique
+    ShopSettingsTab(),
   ];
 
   @override
@@ -87,10 +87,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
             ),
             BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Clients'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.store),
-              label: 'Boutique', // 👈 Nouvel onglet
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Boutique'),
           ],
         ),
       ),
@@ -99,7 +96,7 @@ class _AdminPanelScreenState extends State<AdminPanelScreen> {
 }
 
 // ============================================================
-// ONGLET 1 : DASHBOARD (avec statistiques améliorées)
+// ONGLET 1 : DASHBOARD
 // ============================================================
 class DashboardTab extends StatefulWidget {
   const DashboardTab({super.key});
@@ -514,7 +511,7 @@ class _DashboardTabState extends State<DashboardTab> {
 }
 
 // ============================================================
-// ONGLET 2 : GESTION DU MENU (design amélioré)
+// ONGLET 2 : GESTION DU MENU (CORRIGÉ)
 // ============================================================
 class MenuManagementTab extends StatefulWidget {
   const MenuManagementTab({super.key});
@@ -530,10 +527,9 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
   String _errorMessage = '';
 
   static String get _baseUrl => AppConfig.apiBaseUrl;
-  static String get _imageBaseUrl => AppConfig.imageBaseUrl;
-  final String _getMenuUrl = '${_baseUrl}/menu';
-  final String _adminMenuUrl = '${_baseUrl}/admin/menu';
-  final String _categoriesUrl = '${_baseUrl}/admin/categories';
+  final String _getMenuUrl = '$_baseUrl/menu';
+  final String _adminMenuUrl = '$_baseUrl/admin/menu';
+  final String _categoriesUrl = '$_baseUrl/admin/categories';
   final storage = const FlutterSecureStorage();
 
   @override
@@ -619,7 +615,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
     File? selectedImage;
     String? existingImageUrl = isEditing ? item['image_url'] : null;
 
-    Future<void> _pickImage() async {
+    Future<void> pickImage() async {
       final picker = ImagePicker();
       final pickedFile = await picker.pickImage(source: ImageSource.gallery);
       if (pickedFile != null) {
@@ -627,7 +623,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
       }
     }
 
-    Future<void> _addCategory() async {
+    Future<void> addCategory() async {
       final controller = TextEditingController();
       final result = await showDialog<bool>(
         context: context,
@@ -687,7 +683,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
       }
     }
 
-    Future<void> _deleteCategory(int catId) async {
+    Future<void> deleteCategory(int catId) async {
       final confirm = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
@@ -782,7 +778,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                     children: [
                       Expanded(
                         child: DropdownButtonFormField<int>(
-                          value: selectedCategoryId,
+                          initialValue: selectedCategoryId,
                           decoration: const InputDecoration(
                             labelText: 'Catégorie',
                             border: OutlineInputBorder(),
@@ -803,7 +799,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                                         color: Colors.red,
                                       ),
                                       onPressed: () =>
-                                          _deleteCategory(cat['id']),
+                                          deleteCategory(cat['id']),
                                       padding: EdgeInsets.zero,
                                       constraints: const BoxConstraints(),
                                     ),
@@ -824,7 +820,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                           Icons.add_circle_outline,
                           color: Colors.brown,
                         ),
-                        onPressed: _addCategory,
+                        onPressed: addCategory,
                         tooltip: 'Ajouter une catégorie',
                       ),
                     ],
@@ -848,7 +844,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(8),
                                 child: Image.network(
-                                  '$_imageBaseUrl$existingImageUrl',
+                                  existingImageUrl!, // 👈 UTILISATION DIRECTE
                                   height: 100,
                                   width: double.infinity,
                                   fit: BoxFit.cover,
@@ -875,7 +871,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                               Icons.photo_library,
                               color: Colors.brown,
                             ),
-                            onPressed: _pickImage,
+                            onPressed: pickImage,
                             tooltip: 'Choisir une image',
                           ),
                           if (selectedImage != null ||
@@ -934,7 +930,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                     isEditing ? 'PUT' : 'POST',
                     Uri.parse(
                       isEditing
-                          ? '$_adminMenuUrl/${item!['id']}'
+                          ? '$_adminMenuUrl/${item['id']}'
                           : _adminMenuUrl,
                     ),
                   );
@@ -1091,9 +1087,8 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
               itemCount: _menuItems.length,
               itemBuilder: (context, index) {
                 final item = _menuItems[index];
-                final imageUrl = item['image_url'] != null
-                    ? '$_imageBaseUrl${item['image_url']}'
-                    : null;
+                // 👇 CORRECTION : utilisation directe de l'URL Cloudinary
+                final imageUrl = item['image_url'];
                 return Card(
                   margin: const EdgeInsets.only(bottom: 12),
                   shape: RoundedRectangleBorder(
@@ -1109,6 +1104,11 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
                               width: 56,
                               height: 56,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) =>
+                                  const Icon(
+                                    Icons.broken_image,
+                                    color: Colors.grey,
+                                  ),
                             )
                           : Container(
                               width: 56,
@@ -1158,7 +1158,7 @@ class _MenuManagementTabState extends State<MenuManagementTab> {
 }
 
 // ============================================================
-// ONGLET 3 : LISTE DES CLIENTS (design amélioré)
+// ONGLET 3 : LISTE DES CLIENTS
 // ============================================================
 class ClientsTab extends StatefulWidget {
   const ClientsTab({super.key});
@@ -1745,7 +1745,7 @@ class _ProfileTabState extends State<ProfileTab> {
 }
 
 // ============================================================
-// ONGLET 5 : GESTION DE LA BOUTIQUE (NOUVEAU)
+// ONGLET 5 : GESTION DE LA BOUTIQUE
 // ============================================================
 class ShopSettingsTab extends StatelessWidget {
   const ShopSettingsTab({super.key});

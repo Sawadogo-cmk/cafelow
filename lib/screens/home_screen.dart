@@ -8,7 +8,7 @@ import 'cart_screen.dart';
 import 'dashboard_screen.dart';
 import 'menu_management_screen.dart';
 import 'order_history_screen.dart';
-import 'location_screen.dart'; // 👈 Import pour la page de localisation
+import 'location_screen.dart';
 import '../config.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -180,7 +180,6 @@ class _HomeScreenState extends State<HomeScreen>
         elevation: 0,
         centerTitle: false,
         actions: [
-          // ---- Bouton Localisation (pour tous) ----
           IconButton(
             icon: const Icon(Icons.location_on),
             onPressed: () {
@@ -191,7 +190,6 @@ class _HomeScreenState extends State<HomeScreen>
             },
             tooltip: 'Nous trouver',
           ),
-          // ---- Bouton Historique (visible pour tous les clients) ----
           IconButton(
             icon: const Icon(Icons.history),
             onPressed: () {
@@ -277,7 +275,6 @@ class _HomeScreenState extends State<HomeScreen>
       ),
       body: Column(
         children: [
-          // Barre de recherche
           Container(
             margin: const EdgeInsets.all(16),
             child: TextField(
@@ -295,7 +292,6 @@ class _HomeScreenState extends State<HomeScreen>
               ),
             ),
           ),
-          // Filtres par catégorie
           if (!_isLoading && _categories.isNotEmpty)
             Container(
               height: 50,
@@ -334,7 +330,6 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  // ----- Construction des chips de catégorie -----
   Widget _buildCategoryChip(String? category, String label) {
     final isSelected = _selectedCategory == category;
     return GestureDetector(
@@ -360,7 +355,6 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  // ----- Liste plate (quand une catégorie est sélectionnée) -----
   Widget _buildFlatList(List<dynamic> items) {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -372,7 +366,6 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  // ----- Liste groupée par catégorie -----
   Widget _buildGroupedList(List<dynamic> items) {
     final grouped = _groupItemsByCategory(items);
     final categoryKeys = grouped.keys.toList()..sort();
@@ -386,7 +379,6 @@ class _HomeScreenState extends State<HomeScreen>
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // En-tête de section
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 12),
               child: Text(
@@ -399,7 +391,6 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
             ),
-            // Cartes des plats de cette catégorie
             Column(
               children: categoryItems
                   .map((item) => _buildMenuItemCard(item))
@@ -414,9 +405,7 @@ class _HomeScreenState extends State<HomeScreen>
   // ----- Carte d'un plat (avec image agrandie) -----
   Widget _buildMenuItemCard(dynamic item) {
     final category = item['category_name'] ?? '';
-    final imageUrl = item['image_url'] != null
-        ? '${AppConfig.imageBaseUrl}${item['image_url']}'
-        : null;
+    final imageUrl = item['image_url'];
     final Color categoryColor = _getCategoryColor(category);
 
     return AnimatedContainer(
@@ -434,10 +423,10 @@ class _HomeScreenState extends State<HomeScreen>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Image agrandie en hauteur
+                // 👇 IMAGE AGRANDIE : 90 x 120
                 Container(
-                  width: 80,
-                  height: 100,
+                  width: 90,
+                  height: 120,
                   decoration: BoxDecoration(
                     color: Colors.brown[100],
                     borderRadius: BorderRadius.circular(12),
@@ -458,7 +447,6 @@ class _HomeScreenState extends State<HomeScreen>
                       : const Icon(Icons.fastfood, color: Colors.brown),
                 ),
                 const SizedBox(width: 16),
-                // Infos
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -549,7 +537,6 @@ class _HomeScreenState extends State<HomeScreen>
     );
   }
 
-  // ----- Skeleton de chargement (adapté) -----
   Widget _buildShimmerLoading() {
     return ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -566,9 +553,10 @@ class _HomeScreenState extends State<HomeScreen>
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // 👇 SHIMMER MIS À JOUR : 90 x 120
                 Container(
-                  width: 80,
-                  height: 100,
+                  width: 90,
+                  height: 120,
                   decoration: BoxDecoration(
                     color: Colors.grey[300],
                     borderRadius: BorderRadius.circular(12),

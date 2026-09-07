@@ -17,7 +17,7 @@ class CartItem {
 
 // Le service qui gère le panier (extends ChangeNotifier pour rafraîchir l'UI)
 class CartService extends ChangeNotifier {
-  List<CartItem> _items = [];
+  final List<CartItem> _items = [];
 
   List<CartItem> get items => _items;
 

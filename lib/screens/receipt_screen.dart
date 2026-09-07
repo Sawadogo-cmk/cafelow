@@ -154,7 +154,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
                           ],
                         ),
                       );
-                    }).toList(),
+                    }),
                     const Divider(height: 32),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

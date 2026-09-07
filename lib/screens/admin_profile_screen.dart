@@ -227,8 +227,9 @@ class _AdminProfileScreenState extends State<AdminProfileScreen> {
                         border: OutlineInputBorder(),
                       ),
                       validator: (value) {
-                        if (value!.trim().isEmpty)
+                        if (value!.trim().isEmpty) {
                           return 'Veuillez entrer un email';
+                        }
                         if (!RegExp(
                           r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
                         ).hasMatch(value)) {

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'screens/splash_screen.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
-import 'screens/admin_panel_screen.dart'; // 👈 Nouvel écran admin (avec onglets)
+import 'screens/admin_panel_screen.dart';
 import 'services/cart_service.dart';
 
 void main() {
@@ -19,13 +20,13 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'CaféFlow',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.brown),
+        theme: ThemeData(primarySwatch: Colors.brown, fontFamily: 'Poppins'),
         initialRoute: '/',
         routes: {
-          '/': (context) => const LoginScreen(),
-          '/home': (context) => HomeScreen(),
-          '/dashboard': (context) =>
-              const AdminPanelScreen(), // 👈 Redirection admin
+          '/': (context) => const SplashScreen(),
+          '/login': (context) => const LoginScreen(),
+          '/home': (context) => const HomeScreen(),
+          '/dashboard': (context) => const AdminPanelScreen(),
         },
       ),
     );

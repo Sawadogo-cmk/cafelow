@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:image_picker/image_picker.dart';
+import '../config.dart';
 
 class MenuManagementScreen extends StatefulWidget {
   const MenuManagementScreen({super.key});
@@ -16,11 +17,10 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
   List<dynamic> _categories = [];
   bool _isLoading = true;
   String _errorMessage = '';
-  static const String baseUrl = 'http://localhost:3000/api';
 
-  final String _getMenuUrl = '$baseUrl/menu';
-  final String _adminMenuUrl = '$baseUrl/admin/menu';
-  final String _categoriesUrl = '$baseUrl/admin/categories';
+  final String _getMenuUrl = '${AppConfig.apiBaseUrl}/menu';
+  final String _adminMenuUrl = '${AppConfig.apiBaseUrl}/admin/menu';
+  final String _categoriesUrl = '${AppConfig.apiBaseUrl}/admin/categories';
 
   @override
   void initState() {
@@ -28,7 +28,6 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
     _fetchData();
   }
 
-  // Vérification de sécurité pour éviter les setState après unmount
   bool get _mounted => mounted;
 
   Future<void> _fetchData() async {
@@ -167,7 +166,7 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
     }
   }
 
-  // ----- FORMULAIRE D'AJOUT / MODIFICATION (retourne Future<bool>) -----
+  // ----- FORMULAIRE D'AJOUT / MODIFICATION -----
   Future<bool> _showItemDialog({Map<String, dynamic>? item}) async {
     final isEditing = item != null;
     final nameController = TextEditingController(
@@ -189,10 +188,9 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        // On utilise un StatefulBuilder pour l'état local du dialogue
         return StatefulBuilder(
           builder: (dialogContext, setDialogState) {
-            Future<void> _pickImage() async {
+            Future<void> pickImage() async {
               final picker = ImagePicker();
               final pickedFile = await picker.pickImage(
                 source: ImageSource.gallery,
@@ -237,7 +235,7 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<int>(
-                            value: selectedCategoryId,
+                            initialValue: selectedCategoryId,
                             decoration: const InputDecoration(
                               labelText: 'Catégorie',
                             ),
@@ -262,6 +260,7 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                       ],
                     ),
                     const SizedBox(height: 12),
+                    // ----- IMAGE AVEC UTILISATION DIRECTE DE L'URL CLOUDINARY -----
                     Row(
                       children: [
                         Expanded(
@@ -274,9 +273,14 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                               : (existingImageUrl != null &&
                                     existingImageUrl!.isNotEmpty)
                               ? Image.network(
-                                  '$baseUrl$existingImageUrl',
+                                  existingImageUrl!, // 👈 UTILISATION DIRECTE (Cloudinary)
                                   height: 100,
                                   fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      const Icon(
+                                        Icons.error,
+                                        color: Colors.red,
+                                      ),
                                 )
                               : Container(
                                   height: 100,
@@ -289,7 +293,7 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                           children: [
                             IconButton(
                               icon: const Icon(Icons.photo_library),
-                              onPressed: _pickImage,
+                              onPressed: pickImage,
                               tooltip: 'Choisir une image',
                             ),
                             if (selectedImage != null ||
@@ -335,12 +339,11 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                       return;
                     }
 
-                    // Préparer la requête
                     final request = http.MultipartRequest(
                       isEditing ? 'PUT' : 'POST',
                       Uri.parse(
                         isEditing
-                            ? '$_adminMenuUrl/${item!['id']}'
+                            ? '$_adminMenuUrl/${item['id']}'
                             : _adminMenuUrl,
                       ),
                     );
@@ -369,7 +372,6 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
                       if (response.statusCode == 200 ||
                           response.statusCode == 201) {
                         if (data['success'] == true) {
-                          // Fermer le dialogue avec succès
                           Navigator.pop(dialogContext, true);
                         } else {
                           ScaffoldMessenger.of(dialogContext).showSnackBar(
@@ -396,7 +398,7 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
           },
         );
       },
-    ).then((value) => value ?? false); // si null, on renvoie false
+    ).then((value) => value ?? false);
   }
 
   // ----- SUPPRIMER UN PLAT -----
@@ -470,18 +472,22 @@ class _MenuManagementScreenState extends State<MenuManagementScreen> {
               itemCount: _menuItems.length,
               itemBuilder: (context, index) {
                 final item = _menuItems[index];
-                final imageUrl = item['image_url'] != null
-                    ? '$baseUrl${item['image_url']}'
-                    : null;
+                // 👇 UTILISATION DIRECTE DE L'URL CLOUDINARY
+                final imageUrl = item['image_url'];
                 return Card(
                   margin: const EdgeInsets.only(bottom: 8),
                   child: ListTile(
                     leading: imageUrl != null
                         ? Image.network(
                             imageUrl,
-                            width: 50,
-                            height: 50,
+                            width: 90,
+                            height: 90,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) =>
+                                const Icon(
+                                  Icons.broken_image,
+                                  color: Colors.grey,
+                                ),
                           )
                         : const Icon(Icons.fastfood),
                     title: Text(item['name']),

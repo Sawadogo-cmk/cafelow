@@ -169,15 +169,15 @@ class ReceiptService {
                         ),
                         pw.Padding(
                           padding: const pw.EdgeInsets.all(8),
-                          child: pw.Text('${_formatPrice(price)}'),
+                          child: pw.Text(_formatPrice(price)),
                         ),
                         pw.Padding(
                           padding: const pw.EdgeInsets.all(8),
-                          child: pw.Text('${_formatPrice(itemTotal)}'),
+                          child: pw.Text(_formatPrice(itemTotal)),
                         ),
                       ],
                     );
-                  }).toList(),
+                  }),
                 ],
               ),
               pw.SizedBox(height: 20),
@@ -195,7 +195,7 @@ class ReceiptService {
                     ),
                   ),
                   pw.Text(
-                    '${_formatPrice(total)}',
+                    _formatPrice(total),
                     style: pw.TextStyle(
                       fontSize: 22,
                       fontWeight: pw.FontWeight.bold,
