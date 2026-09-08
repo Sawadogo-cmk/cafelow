@@ -84,11 +84,11 @@ Elle fonctionne sur **Android, iOS, et Web** à partir d’une seule base de cod
 
 ## 📚 Documentation
 
-- [Guide d'installation](docs/installation.md) - Installer le projet en local
-- [API Endpoints](docs/api.md) - Documentation des routes backend
-- [Structure de la base de données](docs/database.md) - Schéma MySQL
-- [Architecture du projet](docs/architecture.md) - Vue d'ensemble
-- [Déploiement](docs/deployment.md) - Déployer sur Render / Netlify
+- [Guide d'installation](https://github.com/Sawadogo-cmk/cafelow/blob/master/docs/installation.md) - Installer le projet en local
+- [API Endpoints](https://github.com/Sawadogo-cmk/cafelow/blob/master/docs/api.md) - Documentation des routes backend
+- [Structure de la base de données](https://github.com/Sawadogo-cmk/cafelow/blob/master/docs/database.md) - Schéma MySQL
+- [Architecture du projet](https://github.com/Sawadogo-cmk/cafelow/blob/master/docs/architecture.md) - Vue d'ensemble
+- [Déploiement](https://github.com/Sawadogo-cmk/cafelow/blob/master/docs/deployment.md) - Déployer sur Render / Netlify
 
 ---
 
