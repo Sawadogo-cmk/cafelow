@@ -6,6 +6,13 @@
 - **Email** : `admin@gmail.com`
 - **Mot de passe** : `admin123`
 
+## 📲 Télécharger l'application
+
+[![Web](https://img.shields.io/badge/🌐-Version_Web-blue?style=for-the-badge&logo=netlify)](https://cafeflow1.netlify.app/)
+[![Android](https://img.shields.io/badge/📱-APK_ARM64-green?style=for-the-badge&logo=android)](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-arm64-v8a-release.apk)
+[![Android](https://img.shields.io/badge/📱-APK_ARM32-orange?style=for-the-badge&logo=android)](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-armeabi-v7a-release.apk)
+[![Source](https://img.shields.io/badge/📦-Code_Source-black?style=for-the-badge&logo=github)](https://github.com/Sawadogo-cmk/cafelow)
+
 ## 🖼️ Aperçu de l'application
 
 | Écran de démarrage | Dashboard Admin | Administration |
