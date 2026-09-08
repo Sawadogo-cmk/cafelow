@@ -1,17 +1,55 @@
-## 🌐 Tester en version Web (sans installation)
+# ☕ CaféFlow - Application Flutter de gestion de café & commandes
 
-👉 [Cliquez ici pour tester CaféFlow dans votre navigateur](https://cafeflow1.netlify.app)
+![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Flutter](https://img.shields.io/badge/Flutter-3.x-blue?logo=flutter)
+![Dart](https://img.shields.io/badge/Dart-3.x-blue?logo=dart)
+![Node.js](https://img.shields.io/badge/Node.js-16+-green?logo=node.js)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-blue?logo=mysql)
+![License](https://img.shields.io/badge/license-MIT-green)
 
-### 🔑 Identifiants de test
-- **Email** : `admin@gmail.com`
-- **Mot de passe** : `admin123`
+**CaféFlow** est une application **Flutter** complète de gestion de café et de commandes en ligne.  
+Elle fonctionne sur **Android, iOS, et Web** à partir d’une seule base de code.
+
+---
 
 ## 📲 Télécharger l'application
 
-[![Web](https://img.shields.io/badge/🌐-Version_Web-blue?style=for-the-badge&logo=netlify)](https://cafeflow1.netlify.app/)
-[![Android](https://img.shields.io/badge/📱-APK_ARM64-green?style=for-the-badge&logo=android)](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-arm64-v8a-release.apk)
-[![Android](https://img.shields.io/badge/📱-APK_ARM32-orange?style=for-the-badge&logo=android)](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-armeabi-v7a-release.apk)
-[![Source](https://img.shields.io/badge/📦-Code_Source-black?style=for-the-badge&logo=github)](https://github.com/Sawadogo-cmk/cafelow)
+| Plateforme | Lien |
+| :--- | :--- |
+| **🌍 Version Web** | [https://cafeflow1.netlify.app/](https://cafeflow1.netlify.app/) |
+| **📱 Android (ARM 64 bits)** | [Télécharger l'APK](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-arm64-v8a-release.apk) |
+| **📱 Android (ARM 32 bits)** | [Télécharger l'APK](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-armeabi-v7a-release.apk) |
+| **📱 Android (x86_64)** | [Télécharger l'APK](https://github.com/Sawadogo-cmk/cafelow/releases/download/v1.0.0/app-x86_64-release.apk) |
+| **📦 Code source** | [GitHub](https://github.com/Sawadogo-cmk/cafelow) |
+
+---
+
+## 🔑 Identifiants de test
+
+| Rôle | Email | Mot de passe |
+| :--- | :--- | :--- |
+| **Administrateur** | `admin@gmail.com` | `admin123` |
+
+---
+
+## 📱 Fonctionnalités
+
+### 👤 Côté client
+- ✅ Navigation dans le menu par catégories
+- ✅ Ajout de plats au panier
+- ✅ Passation de commandes
+- ✅ Historique des commandes
+- ✅ Reçu personnalisé
+
+### 🛠️ Côté administrateur
+- ✅ Dashboard avec statistiques en temps réel (CA, commandes, etc.)
+- ✅ Gestion complète du menu (CRUD avec images Cloudinary)
+- ✅ Gestion des catégories
+- ✅ Suivi des commandes (statuts : en attente, en préparation, terminé)
+- ✅ Liste des clients inscrits
+- ✅ Gestion du profil administrateur
+
+---
 
 ## 🖼️ Aperçu de l'application
 
@@ -26,3 +64,39 @@
 | Gestion des Clients | Reçu généré | Localisation |
 | :---: | :---: | :---: |
 | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/client.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/recu_generer.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/localisation.jpg" width="200"/> |
+
+---
+
+## 🏗️ Stack technique
+
+| Couche | Technologie |
+| :--- | :--- |
+| **Frontend** | Flutter (Dart) – multiplateforme (Android, iOS, Web) |
+| **Backend API** | Node.js / Express |
+| **Base de données** | MySQL |
+| **Hébergement Backend** | Render |
+| **Hébergement Web** | Netlify |
+| **Stockage d'images** | Cloudinary |
+| **Authentification** | JWT (JSON Web Tokens) |
+| **Stockage sécurisé** | flutter_secure_storage |
+
+---
+
+## 🚀 Installation en local (pour les développeurs)
+
+### 1️⃣ Prérequis
+- Flutter SDK (dernière version stable)
+- Node.js (v16+)
+- MySQL (XAMPP/WAMP ou serveur dédié)
+- Git
+
+### 2️⃣ Backend
+```bash
+cd backend
+npm install
+
+# Créer un fichier .env (voir .env.example)
+cp .env.example .env
+
+# Démarrer le serveur
+npm start
