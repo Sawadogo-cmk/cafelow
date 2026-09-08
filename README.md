@@ -82,6 +82,26 @@ Elle fonctionne sur **Android, iOS, et Web** à partir d’une seule base de cod
 
 ---
 
+## 📚 Documentation
+
+- [Guide d'installation](docs/installation.md) - Installer le projet en local
+- [API Endpoints](docs/api.md) - Documentation des routes backend
+- [Structure de la base de données](docs/database.md) - Schéma MySQL
+- [Déploiement](docs/deployment.md) - Déployer sur Render / Netlify
+- [Architecture](docs/architecture.md) - Vue d'ensemble du projet
+
+---
+
+## 🤝 Contribuer
+
+Les contributions sont les bienvenues ! Pour contribuer :
+
+1. Forkez le projet
+2. Créez votre branche (`git checkout -b feature/amazing-feature`)
+3. Commitez vos changements (`git commit -m 'Add amazing feature'`)
+4. Poussez sur la branche (`git push origin feature/amazing-feature`)
+5. Ouvrez une Pull Request
+
 ## 🚀 Installation en local (pour les développeurs)
 
 ### 1️⃣ Prérequis
