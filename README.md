@@ -87,8 +87,8 @@ Elle fonctionne sur **Android, iOS, et Web** à partir d’une seule base de cod
 - [Guide d'installation](docs/installation.md) - Installer le projet en local
 - [API Endpoints](docs/api.md) - Documentation des routes backend
 - [Structure de la base de données](docs/database.md) - Schéma MySQL
+- [Architecture du projet](docs/architecture.md) - Vue d'ensemble
 - [Déploiement](docs/deployment.md) - Déployer sur Render / Netlify
-- [Architecture](docs/architecture.md) - Vue d'ensemble du projet
 
 ---
 
