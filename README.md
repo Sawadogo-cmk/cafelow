@@ -10,12 +10,12 @@
 
 | Écran de démarrage | Dashboard Admin | Administration |
 | :---: | :---: | :---: |
-| ![Splash](screenshots/splash_screen.jpg) | ![Dashboard](screenshots/dashboard.jpg) | ![Administration](screenshots/administration.jpg) |
+| <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/splash_screen.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/dashboard.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/administration.jpg" width="200"/> |
 
 | Gestion du Menu (Admin) | Menu (Client) | Commandes |
 | :---: | :---: | :---: |
-| ![Menu Admin](screenshots/menu_admin.jpg) | ![Menus](screenshots/menus.jpg) | ![Commandes](screenshots/commandes.jpg) |
+| <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/menu_admin.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/menus.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/commandes.jpg" width="200"/> |
 
 | Gestion des Clients | Reçu généré | Localisation |
 | :---: | :---: | :---: |
-| ![Client](screenshots/client.jpg) | ![Reçu](screenshots/recu_generer.jpg) | ![Localisation](screenshots/localisation.jpg) |
+| <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/client.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/recu_generer.jpg" width="200"/> | <img src="https://raw.githubusercontent.com/Sawadogo-cmk/cafelow/master/screenshots/localisation.jpg" width="200"/> |
